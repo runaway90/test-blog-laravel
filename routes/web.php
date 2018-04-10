@@ -20,4 +20,4 @@ Auth::routes();
 Route::get('/', 'MainPageController@getPage')->name('main');
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/log', 'HomeController@log')->name('log');
+Route::get('/log/{share?}', 'HomeController@log')->name('log');

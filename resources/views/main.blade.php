@@ -85,7 +85,7 @@
             </div>
 
 <form method="GET" action="log">
-<button type="submit" class="btn btn-primary pull-right">Bearbeiten</button>
+<button type="submit" value="1" class="btn btn-primary pull-right">Bearbeiten</button>
  </form>
         </div>
     </body>

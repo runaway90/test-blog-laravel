@@ -24,8 +24,26 @@ class HomeController extends Controller
      */
     public function log(Request $request)
     {
+        $token = $request->session()->get('_token');
+        $user=DB::table('users')->where('token', $token)->first();
+        //dd($user);
+        $visit=$this->getVisit($request);
+        $visit->user_id = $user->id;
+        $visit->name = 'log';
+        $visit->save();
+        dd($request);
         $users = DB::table('users')->where('name', 'Tim User')->first();
-    //dd($users->name);
+        //dd($users->name);
+        return view("log", ['users' => $users->name]);
+
+    }
+
+        public function index(Request $request)
+    {
+        $visit=$this->getVisit($request);
+        dd($request);
+        $users = DB::table('users')->where('name', 'Tim User')->first();
+        //dd($users->name);
         return view("log", ['users' => $users->name]);
 
     }
