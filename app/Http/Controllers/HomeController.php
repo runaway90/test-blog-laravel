@@ -41,7 +41,6 @@ class HomeController extends Controller
         $article->main_description =$data['main_description'];
         $article->article =$data['article'];
         $article->tags =$data['tag'];
-        $article->date = Carbon::now();
         $article->save();
         dd('s');
 

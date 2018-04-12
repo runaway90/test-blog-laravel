@@ -13,7 +13,6 @@ class Article extends Model
         'main_description',
         'article',
         'tags',
-        'date',
         'user_id',
         'count_of_like'
     ];

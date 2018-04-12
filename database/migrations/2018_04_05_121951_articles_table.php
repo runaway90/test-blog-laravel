@@ -19,7 +19,6 @@ class ArticlesTable extends Migration
             $table->string('main_description')->nullable();
             $table->text('article');
             $table->string('tags')->nullable();
-            $table->date('date');
             $table->timestampsTz();
             });
     }
