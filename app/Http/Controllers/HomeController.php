@@ -35,7 +35,7 @@ class HomeController extends Controller
     public function articleAdd(Request $request)
     {
         $data =$request->input();
-        //dd($data);
+        dd($data);
         $article = new Article();
         $article->title =$data['title'];
         $article->main_description =$data['main_description'];

@@ -20,19 +20,55 @@
                             <form id="entry" class="entry-form" method="POST" action="{{ route('articleAdd') }}">
                                 <div class="small-spacer"></div>
 
-                                <label for="first_name">First Name</label>
-                                <input type="text" name="title" value="1" class="form-control">
-                                <input type="text" name="main_description" value="2" class="form-control">
-                                <input type="text" name="article" value="3" class="form-control">
-                                <input type="text" name="tag" value="4" class="form-control">
+                                <label for="first_name">Add article</label>
+
+
+
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Title</span>
+                                    </div>
+                                    <textarea class="form-control" name="title" aria-label=""></textarea>
+                                </div>
+
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Main information</span>
+                                    </div>
+                                    <textarea class="form-control" name="main_info" aria-label=""></textarea>
+                                </div>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Article</span>
+                                    </div>
+                                    <textarea class="form-control" name="article" aria-label=""></textarea>
+                                </div>
+                                <div class="input-group mb-3">
+                                  <select class="custom-select" id="inputGroupSelect02">
+                                    <option selected>Choose...</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                  </select>
+                                  <div class="input-group-append">
+                                    <label class="input-group-text" for="inputGroupSelect02">Options</label>
+                                  </div>
+                                </div>
+
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name = 'q' value="option1">
+                                    <label class="form-check-label" for="inlineCheckbox1">1</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name = 'q' value="option2">
+                                    <label class="form-check-label" for="inlineCheckbox2">2</label>
+                                </div>
 
                                 <div align="center">
                                     <a id="swal-demo1" href="#" style="text-decoration: none;">
                                         <input class="submit-button" id="submitentryform" name type="submit" value="Submit">
                                     </a>
                                 </div>
-
-                                <div class="sub-legal ie-sub-legal">No purchase necessary. Click for <a href="rules" target="_blank">Official Rules</a></div>
 
                                 {{ csrf_field() }}
                             </form>
@@ -48,5 +84,7 @@
             alert('Kliknąłeś mnie!')
         });
     });
+
+    p = array.push(option1, option2);
 </script>
 @endsection
