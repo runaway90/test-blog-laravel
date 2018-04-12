@@ -20,10 +20,8 @@ class ArticlesTable extends Migration
             $table->text('article');
             $table->string('tags')->nullable();
             $table->date('date');
-            $table->bigInteger('count_of_like');
-
-            $table->timestamp('created_at')->nullable();
-        });
+            $table->timestampsTz();
+            });
     }
 
     /**

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Article;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
@@ -24,29 +26,35 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function log(Request $request)
+    public function article(Request $request)
     {
-                //$request->session()->setName('21654', '4');//put('s','s');
-                    //Cookie::queue('1', '123', 120);
 
-        $token = $request->session()->get('_token');
-        $user=DB::table('users')->where('token', $token)->first();
-        //dd($user);
-//        $visit=$this->getVisit($request);
-//        $visit->user_id = $user->id;
-//        $visit->name = 'log';
-//        $visit->save();
-        $uuid1 = Uuid::uuid1();
-    echo $uuid1->toString() . "\n"; // i.e. e4eaaaf2-d142-11e1-b3e4-080027620cdd
-
-        dd($request);
-        $users = DB::table('users')->where('name', 'Tim User')->first();
-        //dd($users->name);
-        return view("log", ['users' => $users->name]);
-
+        return view("article/add");
     }
 
-        public function index(Request $request)
+    public function articleAdd(Request $request)
+    {
+        $data =$request->input();
+        //dd($data);
+        $article = new Article();
+        $article->title =$data['title'];
+        $article->main_description =$data['main_description'];
+        $article->article =$data['article'];
+        $article->tags =$data['tag'];
+        $article->date = Carbon::now();
+        $article->save();
+        dd('s');
+
+        return view("article/add");
+    }
+
+    public function findUser(Request $request, $var = null)
+    {
+        $users = DB::table('users')->where('name', $var)->first();
+        return view("user/find", ['users' => $users->name]);
+    }
+
+    public function index(Request $request)
     {
         $visit=$this->getVisit($request);
         dd($request);

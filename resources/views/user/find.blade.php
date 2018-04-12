@@ -14,17 +14,6 @@
                         </div>
                     @endif
 <div class="form-group">
-    <label for="first_name">First Name</label>
-    <input type="text" name="first_name" value="" class="form-control">
-</div>
-
-                    You are logged in!
-
-                        <div align="center">
-                            <button type="submit" class="submit-button" id="enter-button">ENTER</button>
-                        </div>
-
-                </div>
                 {{ print_r($users) }}
             </div>
         </div>

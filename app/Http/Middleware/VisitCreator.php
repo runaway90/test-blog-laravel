@@ -27,7 +27,7 @@ class VisitCreator
      */
     public function handle(Request $request, Closure $next)
     {
-        $path =str_replace($request->root().'/', '',$request->fullUrl()); //$request->fullUrl();
+        $path =str_replace($request->root().'/', '',$request->fullUrl());
         $visiter =new Visit();
 
         $cookie=cookie::get();
@@ -36,7 +36,7 @@ class VisitCreator
             Cookie::queue('visit', $uid, 525600);
         }
 
-        $sessionToken = $request->session()->token();//->get('id');
+        $sessionToken = $request->session()->token();
         $user=DB::table('users')->where('token', $sessionToken)->first();
         if($user != null){
             $visiter->user_id = $user->id;

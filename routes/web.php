@@ -20,4 +20,9 @@ Auth::routes();
 Route::get('/', 'MainPageController@getPage')->name('main');
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/log/{share?}', 'HomeController@log')->name('log');
+Route::get('/article', 'HomeController@article')->name('article');
+Route::post('/article', 'HomeController@articleAdd')->name('articleAdd');
+
+Route::get('/user/{var?}', 'HomeController@findUser')->name('findUser');
+
+
