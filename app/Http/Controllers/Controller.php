@@ -17,17 +17,18 @@ class Controller extends BaseController
 
     public function getVisit(Request $request): ?Visit
     {
+        $cookieVisit = $request->cookie('visit');
+        $visitString = $cookieVisit->toString();
+
         if ($request->session()->has(Visit::SESSION_VAR)) {
-            return Visit::find($request->session()->get(Visit::SESSION_VAR));
+            return Visit::find($visitString);
 
         } else {
             $visit = new Visit();
-            $visit->id = 0;
-            $visit->user_id = 0;
             return $visit;
         }
 
-//        return null;
+        return null;
     }
 
     protected function getUser(Request $request): User

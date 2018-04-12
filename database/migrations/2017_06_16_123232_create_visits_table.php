@@ -16,7 +16,7 @@ class CreateVisitsTable extends Migration
         Schema::create('visits', function (Blueprint $table) {
             $table->increments('id');
             $table->string('session_id')->nullable();
-            $table->string('name')->nullable();
+            $table->string('name_page')->nullable();
 
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->timestampsTz();

@@ -11,14 +11,11 @@ use Illuminate\Support\Facades\DB;
 use Ramsey\Uuid\Uuid;
 
 class VisitCreator
-{    
-    
+{
     /**
-     *
      * @var Request
      */
     private $request;
-
 
     /**
      * Handle an incoming request.
@@ -30,36 +27,24 @@ class VisitCreator
      */
     public function handle(Request $request, Closure $next)
     {
-        dd($request->get('requestUri'));
-        $visit = $session = Cookie::get('visit');
-        if($visit == null){
-           $uid = Uuid::uuid1();
-           Cookie::queue('visit', $uid, 525600);
-           $visit= new Controller();
-           $visiter = $visit->getVisit($request);
+        $path =str_replace($request->root().'/', '',$request->fullUrl()); //$request->fullUrl();
+        $visiter =new Visit();
 
-           $user=DB::table('users')->where('token', $session)->first();
-           $visiter->user_id = $user->id;
-
-        $visiter->name = 'log';
-        $visiter->session_id = $uid;
-        $visiter->save();
-            dd('d');
+        $cookie=cookie::get();
+        if(!isset($cookie['visit'])){
+            $uid = Uuid::uuid1();
+            Cookie::queue('visit', $uid, 525600);
         }
 
+        $sessionToken = $request->session()->token();//->get('id');
+        $user=DB::table('users')->where('token', $sessionToken)->first();
+        if($user != null){
+            $visiter->user_id = $user->id;
+        }
 
-        //$visitor = $session = Cookie::get('visitor_session');
-                    Cookie::queue('log', '123', 120);
-        //$request->session()->setName('21654', '4');//put('s','s');
-//
-//        $user=DB::table('users')->where('token', $session)->first();
-//        //dd($user);
-//
-
-
-//        //dd($request);
-        //dd($value);
-
+        $visiter->name_page = $path;
+        $visiter->session_id = $cookie['visit'];
+        $visiter->save();
         return $next($request);
     }
 }
